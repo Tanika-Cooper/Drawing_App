@@ -1,16 +1,30 @@
-# This is a sample Python script.
+import sys
+import pygame
+from ButtonClass import Button
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def myFunction():
+    print('Button Pressed')
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Config
+pygame.init()
+fps = 60
+fpsClock = pygame.time.Clock()
+width, height = 640, 480
+screen = pygame.display.set_mode((width, height))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+customButton = Button(30, 30, 400, 100, screen, 'Button One', myFunction)
+
+# Game Loop
+while True:
+    screen.fill((20, 20, 20))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    for button in customButton.objects:
+        button.process()
+
+    pygame.display.flip()
+    fpsClock.tick(fps)
