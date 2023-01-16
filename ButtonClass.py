@@ -1,7 +1,8 @@
 import pygame
 
 class Button():
-    def __init__(self, x, y, width, height, gameScreen, buttonText='Button', onClickFunction=None, onePress=False):
+    def __init__(self, x, y, width, height, font, gameScreen, objects, buttonText='Button', onClickFunction=None, onePress=False):
+        self.font = font
         self.x = x
         self.y = y
         self.width = width
@@ -9,7 +10,7 @@ class Button():
         self.onClickFunction = onClickFunction
         self.onePress = onePress
         self.alreadyPressed = False
-        self.objects = []
+        self.objects = objects
 
         self.gameScreen = gameScreen
 
@@ -22,9 +23,6 @@ class Button():
 
         self.buttonSurface = pygame.Surface((self.width, self.height))
         self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)
-
-        font = pygame.font.SysFont('Arial', 40)
-
 
         self.buttonSurf = font.render(buttonText, True, (20, 20, 20))
         self.objects.append(self)
